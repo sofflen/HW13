@@ -12,11 +12,11 @@ public class ListOperations {
     }
 
     //Имеется коллекция из String, привести все стринги в UPPERCASE и вернуть коллекцию List<Pair>
-    public List<Map<String, String>> toUpperCase(List<String> list) {
-        List<Map<String, String>> mapList = new ArrayList<>();
-        Map<String, String> map = list.stream().collect(Collectors.toMap(x -> x, String::toUpperCase));
-        mapList.add(map);
-        return mapList;
+
+    public List<Pair> toUpperCase(List<String> list) {
+        return list.stream()
+                .map(x -> new Pair(x, x.toUpperCase()))
+                .collect(Collectors.toList());
     }
 
     //Имеется коллекция из String, отфильтровать и вывести на экран в все значения, которые написаны в lowerCase and length = 4
@@ -25,5 +25,39 @@ public class ListOperations {
         Predicate<String> isLength = x -> x.length() == 4;
         list.stream().filter(isLowerCase.and(isLength)).forEach(System.out::println);
 
+    }
+
+    class Pair {
+        private String before;
+        private String after;
+
+        Pair(String before, String after) {
+            this.before = before;
+            this.after = after;
+        }
+
+        public String getBefore() {
+            return before;
+        }
+
+        public void setBefore(String before) {
+            this.before = before;
+        }
+
+        public String getAfter() {
+            return after;
+        }
+
+        public void setAfter(String after) {
+            this.after = after;
+        }
+
+        @Override
+        public String toString() {
+            return "Pair{" +
+                    "before='" + before + '\'' +
+                    ", after='" + after + '\'' +
+                    '}';
+        }
     }
 }

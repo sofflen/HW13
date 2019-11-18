@@ -25,9 +25,5 @@ public class Main {
         lo.filter(stringList);
 
 
-
-
-
-
     }
 }
